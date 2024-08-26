@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">WordsApp</string>
+    <string name="few_words_in_dictionary">В словаре должно быть не менее 10 слов, чтобы начать тренировку.\nДобавьте новые и возвращайтесь!</string>
+    <string name="no_words_to_learn">У вас нет слов для изучения.\nДобавьте новые и возвращайтесь!</string>
+    <string name="failed_generate_question">Произошла ошибка во время создания вопроса, попробуйте еще раз!</string>
 </resources>

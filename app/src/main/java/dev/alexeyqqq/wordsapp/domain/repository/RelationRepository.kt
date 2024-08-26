@@ -8,5 +8,5 @@ interface RelationRepository {
 
     fun getDictionaryWords(dictionaryId: Long): Flow<List<Word>>
 
-    fun getDictionariesWithoutWord(original: String): Flow<List<Dictionary>>
+    fun getDictionariesWithoutWord(wordId: Long): Flow<List<Dictionary>>
 }
