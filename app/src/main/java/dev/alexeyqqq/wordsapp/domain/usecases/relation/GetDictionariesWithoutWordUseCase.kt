@@ -8,6 +8,6 @@ class GetDictionariesWithoutWordUseCase(
     private val relationRepository: RelationRepository,
 ) {
 
-    operator fun invoke(original: String): Flow<List<Dictionary>> =
-        relationRepository.getDictionariesWithoutWord(original)
+    operator fun invoke(wordId: Long): Flow<List<Dictionary>> =
+        relationRepository.getDictionariesWithoutWord(wordId)
 }

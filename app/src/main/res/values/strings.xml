@@ -3,4 +3,8 @@
     <string name="few_words_in_dictionary">В словаре должно быть не менее 10 слов, чтобы начать тренировку.\nДобавьте новые и возвращайтесь!</string>
     <string name="no_words_to_learn">У вас нет слов для изучения.\nДобавьте новые и возвращайтесь!</string>
     <string name="failed_generate_question">Произошла ошибка во время создания вопроса, попробуйте еще раз!</string>
+    <string name="learn_english_words">Learn\nEnglish\nWords</string>
+    <string name="learn_words">Учить слова</string>
+    <string name="dictionaries">Словари</string>
+    <string name="statistics">Статистика</string>
 </resources>
