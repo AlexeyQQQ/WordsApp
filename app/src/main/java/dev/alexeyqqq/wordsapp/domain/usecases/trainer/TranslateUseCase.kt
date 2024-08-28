@@ -1,8 +1,9 @@
 package dev.alexeyqqq.wordsapp.domain.usecases.trainer
 
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository
+import javax.inject.Inject
 
-class TranslateUseCase(
+class TranslateUseCase @Inject constructor(
     private val trainerRepository: TrainerRepository,
 ) {
 

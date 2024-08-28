@@ -14,8 +14,9 @@ import dev.alexeyqqq.wordsapp.domain.exceptions.TrainerExceptions
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
 import kotlinx.coroutines.flow.first
+import javax.inject.Inject
 
-class TrainerRepositoryImpl(
+class TrainerRepositoryImpl @Inject constructor(
     private val wordsDao: WordsDao,
     private val dictionaryDao: DictionaryDao,
     private val relationDao: RelationDao,

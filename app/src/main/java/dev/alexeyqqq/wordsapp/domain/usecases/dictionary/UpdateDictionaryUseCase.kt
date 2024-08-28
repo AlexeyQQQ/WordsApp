@@ -1,8 +1,9 @@
 package dev.alexeyqqq.wordsapp.domain.usecases.dictionary
 
 import dev.alexeyqqq.wordsapp.domain.repository.DictionaryRepository
+import javax.inject.Inject
 
-class UpdateDictionaryUseCase(
+class UpdateDictionaryUseCase @Inject constructor(
     private val dictionaryRepository: DictionaryRepository,
 ) {
 

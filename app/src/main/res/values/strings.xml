@@ -7,4 +7,7 @@
     <string name="learn_words">Учить слова</string>
     <string name="dictionaries">Словари</string>
     <string name="statistics">Статистика</string>
+    <string name="button_back">button back</string>
+    <string name="choose_dictionary_to_study">Выберите словарь для изучения</string>
+    <string name="teach_all_words">Учить все слова</string>
 </resources>

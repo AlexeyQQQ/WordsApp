@@ -28,3 +28,11 @@ fun Word.mapToDbModel() = WordDbModel(
     translation = translation,
     correctAnswersCount = correctAnswersCount,
 )
+
+fun List<DictionaryDbModel>.mapToDomainDictionaryList() = this.map {
+    it.mapToDomain()
+}
+
+fun List<WordDbModel>.mapToDomainWordList() = this.map {
+    it.mapToDomain()
+}
