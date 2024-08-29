@@ -1,11 +1,13 @@
 package dev.alexeyqqq.wordsapp.presentation.navigation
 
+import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesScreen
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionScreen
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryScreen
 import dev.alexeyqqq.wordsapp.presentation.start_menu.StartMenuScreen
 import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsScreen
 
-interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, QuestionNavigation {
+interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, QuestionNavigation,
+    DictionariesNavigation {
 
     fun navigate(screen: Screen)
 
@@ -14,7 +16,7 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, Question
     }
 
     override fun toDictionariesScreen() {
-        TODO()
+        navigate(DictionariesScreen)
     }
 
     override fun toStatisticsScreen() {
@@ -27,6 +29,14 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, Question
 
     override fun toStartMenuScreen() {
         navigate(StartMenuScreen)
+    }
+
+    override fun toDictionaryDetailsScreen(dictionaryId: Long) {
+        TODO()
+    }
+
+    override fun toAddDictionaryScreen() {
+        TODO()
     }
 }
 
@@ -47,4 +57,11 @@ interface SelectDictionaryNavigation {
 interface QuestionNavigation {
 
     fun toStartMenuScreen()
+}
+
+interface DictionariesNavigation {
+
+    fun toDictionaryDetailsScreen(dictionaryId: Long)
+
+    fun toAddDictionaryScreen()
 }

@@ -3,6 +3,7 @@ package dev.alexeyqqq.wordsapp.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesFragment
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionFragment
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryFragment
 import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsFragment
@@ -21,6 +22,8 @@ interface ApplicationComponent {
     fun inject(fragment: QuestionFragment)
 
     fun inject(fragment: StatisticsFragment)
+
+    fun inject(fragment: DictionariesFragment)
 
     @Component.Factory
     interface Factory {

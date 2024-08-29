@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesViewModel
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionViewModel
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryViewModel
 import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsViewModel
@@ -25,4 +26,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(StatisticsViewModel::class)
     fun bindStatisticsViewModel(viewModel: StatisticsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DictionariesViewModel::class)
+    fun bindDictionariesViewModel(viewModel: DictionariesViewModel): ViewModel
 }
