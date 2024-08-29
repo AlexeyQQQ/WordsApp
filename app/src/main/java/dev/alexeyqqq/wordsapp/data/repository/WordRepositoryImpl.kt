@@ -19,7 +19,7 @@ class WordRepositoryImpl @Inject constructor(
 
     override suspend fun getWord(wordId: Long): Word = wordsDao.getWord(wordId).mapToDomain()
 
-    override suspend fun insertWord(word: Word) = wordsDao.insertWord(word.mapToDbModel())
+    override suspend fun insertWord(word: Word): Long = wordsDao.insertWord(word.mapToDbModel())
 
     override suspend fun updateWord(word: Word) = wordsDao.updateWord(word.mapToDbModel())
 

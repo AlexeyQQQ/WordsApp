@@ -6,7 +6,7 @@ import dev.alexeyqqq.wordsapp.domain.entity.Word
 
 interface TrainerRepository {
 
-    suspend fun getNextQuestion(dictionaryId: Long = LEARN_ALL_WORDS): Question
+    suspend fun getNextQuestion(dictionaryId: Long): Question
 
     suspend fun increaseCorrectAnswers(word: Word)
 

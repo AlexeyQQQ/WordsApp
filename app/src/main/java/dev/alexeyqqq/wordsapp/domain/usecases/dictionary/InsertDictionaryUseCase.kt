@@ -8,6 +8,6 @@ class InsertDictionaryUseCase @Inject constructor(
     private val dictionaryRepository: DictionaryRepository,
 ) {
 
-    suspend operator fun invoke(dictionary: Dictionary) =
+    suspend operator fun invoke(dictionary: Dictionary): Long =
         dictionaryRepository.insertDictionary(dictionary)
 }

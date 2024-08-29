@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentSelectDictionaryBinding
+import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.navigation.SelectDictionaryNavigation
 import kotlinx.coroutines.launch
@@ -60,7 +61,11 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
 
     private fun setupClickListeners() = with(binding) {
         buttonAllDictionaries.setOnClickListener {
-            (requireActivity() as SelectDictionaryNavigation).toQuestionScreen()
+            (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(LEARN_ALL_WORDS)
+        }
+
+        imageViewBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -77,12 +82,7 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
         _binding = null
     }
 
-    override fun selectDictionary() {
-        (requireActivity() as SelectDictionaryNavigation).toQuestionScreen()
+    override fun selectDictionary(dictionaryId: Long) {
+        (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(dictionaryId)
     }
-}
-
-interface DictionaryActions {
-
-    fun selectDictionary()
 }

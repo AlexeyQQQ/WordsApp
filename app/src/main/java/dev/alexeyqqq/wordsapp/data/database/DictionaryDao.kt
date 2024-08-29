@@ -14,7 +14,7 @@ interface DictionaryDao {
     fun getAllDictionaries(): Flow<List<DictionaryDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDictionary(dictionary: DictionaryDbModel)
+    suspend fun insertDictionary(dictionary: DictionaryDbModel): Long
 
     @Query("UPDATE dictionary_table SET name = :newName WHERE id = :dictionaryId")
     suspend fun updateDictionary(dictionaryId: Long, newName: String)

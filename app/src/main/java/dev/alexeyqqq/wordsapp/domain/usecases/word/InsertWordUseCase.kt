@@ -8,5 +8,5 @@ class InsertWordUseCase @Inject constructor(
     private val wordRepository: WordRepository,
 ) {
 
-    suspend operator fun invoke(word: Word) = wordRepository.insertWord(word)
+    suspend operator fun invoke(word: Word): Long = wordRepository.insertWord(word)
 }

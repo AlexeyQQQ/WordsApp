@@ -9,7 +9,7 @@ interface WordRepository {
 
     suspend fun getWord(wordId: Long): Word
 
-    suspend fun insertWord(word: Word)
+    suspend fun insertWord(word: Word): Long
 
     suspend fun updateWord(word: Word)
 

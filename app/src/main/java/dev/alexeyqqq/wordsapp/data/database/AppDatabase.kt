@@ -57,7 +57,7 @@ abstract class AppDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { appDatabase ->
                 scope.launch {
-                    appDatabase.dictionaryDao().insertDictionary(
+                    val generatedDictionaryId = appDatabase.dictionaryDao().insertDictionary(
                         DictionaryDbModel(id = 1, name = "Базовый набор слов")
                     )
 
@@ -85,9 +85,12 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                     listOfWords.forEach {
-                        appDatabase.wordsDao().insertWord(it)
+                        val generatedId = appDatabase.wordsDao().insertWord(it)
                         appDatabase.relationDao().insertRelation(
-                            RelationDbModel(wordId = it.id, dictionaryId = 1)
+                            RelationDbModel(
+                                wordId = generatedId,
+                                dictionaryId = generatedDictionaryId,
+                            )
                         )
                     }
                 }

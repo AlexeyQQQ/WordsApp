@@ -18,7 +18,7 @@ class DictionaryRepositoryImpl @Inject constructor(
     override fun getAllDictionaries(): Flow<List<Dictionary>> =
         dictionaryDao.getAllDictionaries().map { it.mapToDomainDictionaryList() }
 
-    override suspend fun insertDictionary(dictionary: Dictionary) =
+    override suspend fun insertDictionary(dictionary: Dictionary): Long =
         dictionaryDao.insertDictionary(dictionary.mapToDbModel())
 
     override suspend fun updateDictionary(dictionaryId: Long, newName: String) =

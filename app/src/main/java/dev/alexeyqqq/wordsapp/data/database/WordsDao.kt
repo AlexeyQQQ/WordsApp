@@ -18,7 +18,7 @@ interface WordsDao {
     suspend fun getWord(wordId: Long): WordDbModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWord(word: WordDbModel)
+    suspend fun insertWord(word: WordDbModel): Long
 
     @Update
     suspend fun updateWord(word: WordDbModel)

@@ -48,21 +48,28 @@ class TrainerRepositoryImpl @Inject constructor(
         val allWords = getWordsByDictionaryId(dictionaryId)
         if (allWords.size < MIN_WORDS) throw TrainerExceptions.FewWords()
 
-        val (unlearnedWords, learnedWords)
+        var (unlearnedWords, learnedWords)
                 = allWords.partition { it.correctAnswersCount < ANSWER_TO_STUDY }
         if (unlearnedWords.isEmpty()) throw TrainerExceptions.NoWordsToLearn()
 
-        val finalWords = unlearnedWords + learnedWords.shuffled()
-            .take(COUNT_OF_QUESTION_WORDS - unlearnedWords.size)
+        if (unlearnedWords.size < COUNT_OF_QUESTION_WORDS) {
+            learnedWords =
+                learnedWords.shuffled().take(COUNT_OF_QUESTION_WORDS - unlearnedWords.size)
+            unlearnedWords = unlearnedWords + learnedWords
+        }
+
+        val finalWords = unlearnedWords.shuffled()
+            .take(COUNT_OF_QUESTION_WORDS)
 
         val correctAnswer = finalWords.filter {
             it.correctAnswersCount < ANSWER_TO_STUDY
         }.random()
 
-        return Question(
+        val question = Question(
             options = finalWords.map { it.mapToDomain() },
             correctIndex = finalWords.indexOf(correctAnswer)
         )
+        return question
     }
 
     private suspend fun getWordsByDictionaryId(dictionaryId: Long): List<WordDbModel> {

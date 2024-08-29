@@ -33,7 +33,7 @@ class DictionaryAdapter(
         fun bind(dictionary: Dictionary) {
             binding.textViewName.text = dictionary.name
             itemView.setOnClickListener {
-                dictionaryActions.selectDictionary()
+                dictionaryActions.selectDictionary(dictionary.id)
             }
         }
     }
@@ -55,4 +55,9 @@ object DictionaryDiffCallback : DiffUtil.ItemCallback<Dictionary>() {
 interface UpdateList {
 
     fun update(list: List<Dictionary>)
+}
+
+interface DictionaryActions {
+
+    fun selectDictionary(dictionaryId: Long)
 }

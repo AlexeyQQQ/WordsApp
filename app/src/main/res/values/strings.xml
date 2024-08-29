@@ -10,4 +10,16 @@
     <string name="button_back">button back</string>
     <string name="choose_dictionary_to_study">Выберите словарь для изучения</string>
     <string name="teach_all_words">Учить все слова</string>
+    <string name="option_01">01</string>
+    <string name="option_02">02</string>
+    <string name="option_03">03</string>
+    <string name="option_04">04</string>
+    <string name="skip">Пропустить</string>
+    <string name="next">Продолжить</string>
+    <string name="have_problem">Ой, возникла проблема!</string>
+    <string name="correct">Правильно!</string>
+    <string name="wrong">Неправильно!</string>
+    <string name="return_to_menu">Вернуться в меню</string>
+    <string name="tv_words_learned">Выучено слов: %s</string>
+    <string name="progress_template">%s/%s</string>
 </resources>

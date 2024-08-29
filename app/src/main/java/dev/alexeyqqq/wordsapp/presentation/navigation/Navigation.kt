@@ -1,8 +1,10 @@
 package dev.alexeyqqq.wordsapp.presentation.navigation
 
+import dev.alexeyqqq.wordsapp.presentation.question.QuestionScreen
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryScreen
+import dev.alexeyqqq.wordsapp.presentation.start_menu.StartMenuScreen
 
-interface Navigation : StartMenuNavigation, SelectDictionaryNavigation {
+interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, QuestionNavigation {
 
     fun navigate(screen: Screen)
 
@@ -18,8 +20,12 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation {
         TODO()
     }
 
-    override fun toQuestionScreen() {
-        TODO()
+    override fun toQuestionScreen(dictionaryId: Long) {
+        navigate(QuestionScreen(dictionaryId))
+    }
+
+    override fun toStartMenuScreen() {
+        navigate(StartMenuScreen)
     }
 }
 
@@ -34,5 +40,10 @@ interface StartMenuNavigation {
 
 interface SelectDictionaryNavigation {
 
-    fun toQuestionScreen()
+    fun toQuestionScreen(dictionaryId: Long)
+}
+
+interface QuestionNavigation {
+
+    fun toStartMenuScreen()
 }
