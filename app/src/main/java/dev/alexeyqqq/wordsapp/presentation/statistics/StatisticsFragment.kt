@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp.presentation.select_dictionary
+package dev.alexeyqqq.wordsapp.presentation.statistics
 
 import android.content.Context
 import android.os.Bundle
@@ -11,19 +11,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
-import dev.alexeyqqq.wordsapp.databinding.FragmentSelectDictionaryBinding
-import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
+import dev.alexeyqqq.wordsapp.databinding.FragmentStatisticsBinding
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
-import dev.alexeyqqq.wordsapp.presentation.navigation.SelectDictionaryNavigation
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SelectDictionaryFragment : Fragment(), DictionaryActions {
+class StatisticsFragment : Fragment() {
 
-    private var _binding: FragmentSelectDictionaryBinding? = null
-    private val binding: FragmentSelectDictionaryBinding
-        get() = _binding ?: throw RuntimeException("FragmentSelectDictionaryBinding == null")
+    private var _binding: FragmentStatisticsBinding? = null
+    private val binding: FragmentStatisticsBinding
+        get() = _binding ?: throw RuntimeException("FragmentStatisticsBinding == null")
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -33,11 +31,7 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
     }
 
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[SelectDictionaryViewModel::class.java]
-    }
-
-    private val adapter by lazy {
-        DictionaryAdapter(dictionaryActions = this)
+        ViewModelProvider(this, viewModelFactory)[StatisticsViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -46,25 +40,21 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentSelectDictionaryBinding.inflate(inflater, container, false)
+        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerViewDictionaries.adapter = adapter
         setupClickListeners()
         observeViewModel()
     }
 
     private fun setupClickListeners() = with(binding) {
-        buttonAllDictionaries.setOnClickListener {
-            (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(LEARN_ALL_WORDS)
-        }
-
         imageViewBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
@@ -73,7 +63,7 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.uiState.collectLatest { it.show(adapter) }
+                viewModel.uiState.collectLatest { it.show(binding) }
             }
         }
     }
@@ -81,9 +71,5 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun selectDictionary(dictionaryId: Long) {
-        (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(dictionaryId)
     }
 }

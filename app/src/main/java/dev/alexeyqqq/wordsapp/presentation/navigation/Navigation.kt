@@ -3,6 +3,7 @@ package dev.alexeyqqq.wordsapp.presentation.navigation
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionScreen
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryScreen
 import dev.alexeyqqq.wordsapp.presentation.start_menu.StartMenuScreen
+import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsScreen
 
 interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, QuestionNavigation {
 
@@ -17,7 +18,7 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, Question
     }
 
     override fun toStatisticsScreen() {
-        TODO()
+        navigate(StatisticsScreen)
     }
 
     override fun toQuestionScreen(dictionaryId: Long) {

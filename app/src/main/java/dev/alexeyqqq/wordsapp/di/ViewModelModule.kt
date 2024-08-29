@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionViewModel
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryViewModel
+import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsViewModel
 
 @Module
 interface ViewModelModule {
@@ -19,4 +20,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(QuestionViewModel::class)
     fun bindQuestionViewModel(viewModel: QuestionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StatisticsViewModel::class)
+    fun bindStatisticsViewModel(viewModel: StatisticsViewModel): ViewModel
 }

@@ -20,7 +20,7 @@ class QuestionViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<QuestionUiState> =
-        MutableStateFlow(QuestionUiState.Empty)
+        MutableStateFlow(QuestionUiState.Loading)
     val uiState get() = _uiState.asStateFlow()
 
     private var cachedQuestion: Question? = null

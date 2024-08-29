@@ -8,9 +8,26 @@ import dev.alexeyqqq.wordsapp.domain.exceptions.TrainerExceptions
 
 sealed interface QuestionUiState {
 
-    fun show(binding: FragmentQuestionBinding) = Unit
+    fun show(binding: FragmentQuestionBinding)
 
-    data object Empty : QuestionUiState
+    data object Loading : QuestionUiState {
+
+        override fun show(binding: FragmentQuestionBinding) = with(binding) {
+            listOf(
+                containerOption1,
+                containerOption2,
+                containerOption3,
+                containerOption4,
+                progressBar,
+                textViewProgress,
+                textViewResult,
+                buttonNext,
+            ).forEach {
+                it.visibility = View.GONE
+            }
+            progressBarLoading.visibility = View.VISIBLE
+        }
+    }
 
     data class NewWord(
         private val word: String,
@@ -27,6 +44,8 @@ sealed interface QuestionUiState {
                 context, R.drawable.option_number_shape
             )
             val blackTextColor = ContextCompat.getColor(context, R.color.black)
+
+            progressBarLoading.visibility = View.GONE
 
             listOf(containerOption1, containerOption2, containerOption3, containerOption4).forEach {
                 it.visibility = View.VISIBLE
@@ -52,15 +71,22 @@ sealed interface QuestionUiState {
                 progress = wordsLearned
             }
 
-            textViewProgress.text = context.getString(
-                R.string.progress_template,
-                wordsLearned.toString(),
-                wordsTotal.toString()
-            )
+            textViewProgress.apply {
+                visibility = View.VISIBLE
+                text = context.getString(
+                    R.string.progress_template,
+                    wordsLearned.toString(),
+                    wordsTotal.toString()
+                )
+            }
+
+            buttonNext.apply {
+                text = context.getString(R.string.skip)
+                visibility = View.VISIBLE
+            }
 
             textViewHeader.text = word
             textViewResult.visibility = View.GONE
-            buttonNext.text = context.getString(R.string.skip)
         }
     }
 

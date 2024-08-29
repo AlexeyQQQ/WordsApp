@@ -16,6 +16,7 @@ import dev.alexeyqqq.wordsapp.databinding.FragmentQuestionBinding
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.navigation.QuestionNavigation
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -94,7 +95,7 @@ class QuestionFragment : Fragment() {
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.uiState.collect { it.show(binding) }
+                viewModel.uiState.collectLatest { it.show(binding) }
             }
         }
     }
