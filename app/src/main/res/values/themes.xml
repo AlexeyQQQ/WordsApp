@@ -1,9 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.WordsApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.WordsApp" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">#8632F4</item>
     </style>
 
-    <style name="Theme.WordsApp" parent="Base.Theme.WordsApp" />
+    <style name="Theme.WordsApp" parent="Base.Theme.WordsApp">
+        <item name="android:fontFamily">@font/montserrat_font_family</item>
+        <item name="fontFamily">@font/montserrat_font_family</item>
+    </style>
 </resources>

@@ -13,6 +13,9 @@ interface DictionaryDao {
     @Query("SELECT * FROM dictionary_table ORDER BY name")
     fun getAllDictionaries(): Flow<List<DictionaryDbModel>>
 
+    @Query("SELECT * FROM dictionary_table WHERE id = :dictionaryId")
+    suspend fun getDictionary(dictionaryId: Long): DictionaryDbModel
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDictionary(dictionary: DictionaryDbModel): Long
 

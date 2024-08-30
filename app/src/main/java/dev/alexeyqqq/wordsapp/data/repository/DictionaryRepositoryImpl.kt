@@ -3,6 +3,7 @@ package dev.alexeyqqq.wordsapp.data.repository
 import dev.alexeyqqq.wordsapp.data.database.DictionaryDao
 import dev.alexeyqqq.wordsapp.data.database.RelationDao
 import dev.alexeyqqq.wordsapp.data.mapToDbModel
+import dev.alexeyqqq.wordsapp.data.mapToDomain
 import dev.alexeyqqq.wordsapp.data.mapToDomainDictionaryList
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.domain.repository.DictionaryRepository
@@ -17,6 +18,9 @@ class DictionaryRepositoryImpl @Inject constructor(
 
     override fun getAllDictionaries(): Flow<List<Dictionary>> =
         dictionaryDao.getAllDictionaries().map { it.mapToDomainDictionaryList() }
+
+    override suspend fun getDictionary(dictionaryId: Long): Dictionary =
+        dictionaryDao.getDictionary(dictionaryId).mapToDomain()
 
     override suspend fun insertDictionary(dictionary: Dictionary): Long =
         dictionaryDao.insertDictionary(dictionary.mapToDbModel())

@@ -7,6 +7,8 @@ interface DictionaryRepository {
 
     fun getAllDictionaries(): Flow<List<Dictionary>>
 
+    suspend fun getDictionary(dictionaryId: Long): Dictionary
+
     suspend fun insertDictionary(dictionary: Dictionary): Long
 
     suspend fun updateDictionary(dictionaryId: Long, newName: String)

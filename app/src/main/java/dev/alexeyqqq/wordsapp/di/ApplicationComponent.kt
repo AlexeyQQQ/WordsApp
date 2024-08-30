@@ -9,6 +9,7 @@ import dev.alexeyqqq.wordsapp.presentation.select_dictionary.SelectDictionaryFra
 import dev.alexeyqqq.wordsapp.presentation.statistics.StatisticsFragment
 import kotlinx.coroutines.CoroutineScope
 
+@ApplicationScope
 @Component(
     modules = [
         DataModule::class,
@@ -24,6 +25,8 @@ interface ApplicationComponent {
     fun inject(fragment: StatisticsFragment)
 
     fun inject(fragment: DictionariesFragment)
+
+    fun dictionaryDetailsComponentFactory(): DictionaryDetailsComponent.Factory
 
     @Component.Factory
     interface Factory {

@@ -8,6 +8,7 @@
     <string name="dictionaries">Словари</string>
     <string name="statistics">Статистика</string>
     <string name="description_back_button">Это кнопка назад</string>
+    <string name="description_menu_button">Это кнопка меню</string>
     <string name="choose_dictionary">Выберите словарь</string>
     <string name="choose_dictionary_to_study">Выберите словарь для изучения</string>
     <string name="teach_all_words">Учить все слова</string>
@@ -23,6 +24,8 @@
     <string name="return_to_menu">Вернуться в меню</string>
     <string name="tv_words_learned">Выучено слов: %s</string>
     <string name="progress_template">%s/%s</string>
-    <string name="detailed_statistics">Всего словарей: %s\nВсего слов: %s\nСлов выучено: %s\nПрогресс: %s%%</string>
     <string name="description_add_dictionary_button">Это кнопка добавления нового словаря</string>
+    <string name="detailed_statistics">Всего словарей: %s\nВсего слов: %s\nСлов выучено: %s\nПрогресс: %s%%</string>
+    <string name="statistics_dictionary">Изучено %s из %s слов</string>
+    <string name="count_repeat">%s/%s</string>
 </resources>

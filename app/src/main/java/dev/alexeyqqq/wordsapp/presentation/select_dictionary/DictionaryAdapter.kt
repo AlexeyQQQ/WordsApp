@@ -26,6 +26,8 @@ class DictionaryAdapter(
         holder.bind(getItem(position))
     }
 
+    override fun update(list: List<Dictionary>) = submitList(list)
+
     inner class DictionaryViewHolder(
         private val binding: ItemRvDictionaryBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -37,8 +39,6 @@ class DictionaryAdapter(
             }
         }
     }
-
-    override fun update(list: List<Dictionary>) = submitList(list)
 }
 
 object DictionaryDiffCallback : DiffUtil.ItemCallback<Dictionary>() {
