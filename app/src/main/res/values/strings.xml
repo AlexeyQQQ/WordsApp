@@ -17,7 +17,9 @@
     <string name="option_03">03</string>
     <string name="option_04">04</string>
     <string name="skip">Пропустить</string>
+    <string name="cancel">Отмена</string>
     <string name="next">Продолжить</string>
+    <string name="save">Сохранить</string>
     <string name="have_problem">Ой, возникла проблема!</string>
     <string name="correct">Правильно!</string>
     <string name="wrong">Неправильно!</string>
@@ -28,4 +30,7 @@
     <string name="detailed_statistics">Всего словарей: %s\nВсего слов: %s\nСлов выучено: %s\nПрогресс: %s%%</string>
     <string name="statistics_dictionary">Изучено %s из %s слов</string>
     <string name="count_repeat">%s/%s</string>
+    <string name="enter_word">Введите cлово</string>
+    <string name="translate">Перевод</string>
+    <string name="adding_word">Добавление слова:</string>
 </resources>

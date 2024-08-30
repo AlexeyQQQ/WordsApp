@@ -1,5 +1,6 @@
 package dev.alexeyqqq.wordsapp.presentation.navigation
 
+import dev.alexeyqqq.wordsapp.presentation.create_word.CreateNewWordScreen
 import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesScreen
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsScreen
 import dev.alexeyqqq.wordsapp.presentation.question.QuestionScreen
@@ -44,8 +45,8 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, Question
         TODO()
     }
 
-    override fun toCreateNewWordScreen() {
-        TODO()
+    override fun toCreateNewWordScreen(dictionaryId: Long) {
+        navigate(CreateNewWordScreen(dictionaryId))
     }
 }
 
@@ -79,7 +80,7 @@ interface DictionaryDetailsNavigation {
 
     fun toWordDetailsScreen(wordId: Long)
 
-    fun toCreateNewWordScreen()
+    fun toCreateNewWordScreen(dictionaryId: Long)
 
     fun toAddDictionaryScreen()
 }

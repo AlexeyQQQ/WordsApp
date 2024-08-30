@@ -9,4 +9,6 @@ interface RelationRepository {
     fun getDictionaryWords(dictionaryId: Long): Flow<List<Word>>
 
     fun getDictionariesWithoutWord(wordId: Long): Flow<List<Dictionary>>
+
+    suspend fun saveNewWordInDictionary(original: String, translate: String, dictionaryId: Long)
 }

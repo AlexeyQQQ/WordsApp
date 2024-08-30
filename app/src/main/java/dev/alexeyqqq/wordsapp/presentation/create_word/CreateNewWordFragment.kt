@@ -1,83 +1,91 @@
-package dev.alexeyqqq.wordsapp.presentation.dictionary_details
+package dev.alexeyqqq.wordsapp.presentation.create_word
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.alexeyqqq.wordsapp.App
-import dev.alexeyqqq.wordsapp.databinding.FragmentDictionaryDetailsBinding
+import dev.alexeyqqq.wordsapp.databinding.FragmentCreateNewWordBinding
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
-import dev.alexeyqqq.wordsapp.presentation.navigation.DictionaryDetailsNavigation
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DictionaryDetailsFragment : Fragment(), WordActions {
+class CreateNewWordFragment : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentDictionaryDetailsBinding? = null
-    private val binding: FragmentDictionaryDetailsBinding
-        get() = _binding ?: throw RuntimeException("FragmentDictionaryDetailsBinding == null")
+    private var _binding: FragmentCreateNewWordBinding? = null
+    private val binding: FragmentCreateNewWordBinding
+        get() = _binding ?: throw RuntimeException("FragmentCreateNewWordBinding == null")
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[DictionaryDetailsViewModel::class.java]
+    private val component by lazy {
+        (requireActivity().application as App).component
     }
 
-    private val adapter by lazy {
-        WordAdapter(wordActions = this)
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[CreateNewWordViewModel::class.java]
     }
 
     private var dictionaryId: Long? = null
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             dictionaryId = it.getLong(DICTIONARY_ID_KEY)
         } ?: throw RuntimeException("DictionaryDetailsFragment arguments == null")
-
-        dictionaryId?.let {
-            val component = (requireActivity().application as App).component
-                .dictionaryDetailsComponentFactory()
-                .create(it)
-            component.inject(this)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentDictionaryDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateNewWordBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerViewWords.adapter = adapter
         setupClickListeners()
+        setupTextChangedListeners()
         observeViewModel()
     }
 
+    private fun setupTextChangedListeners() {
+        binding.editTextOriginal.addTextChangedListener {
+            viewModel.checkOriginalInput(it.toString())
+        }
+
+        binding.editTextTranslate.addTextChangedListener {
+            viewModel.checkTranslateInput(it.toString())
+        }
+    }
+
     private fun setupClickListeners() = with(binding) {
-        imageViewBack.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+        buttonCancel.setOnClickListener {
+            dismiss()
         }
 
-        buttonAddWord.setOnClickListener {
+        buttonSave.setOnClickListener {
             dictionaryId?.let {
-                (requireActivity() as DictionaryDetailsNavigation).toCreateNewWordScreen(it)
+                val original = binding.editTextOriginal.text.toString()
+                val translate = binding.editTextTranslate.text.toString()
+                viewModel.saveNewWord(original, translate, it)
+                dismiss()
             }
-        }
-
-        imageViewMenu.setOnClickListener {
-            (requireActivity() as DictionaryDetailsNavigation).toAddDictionaryScreen()
         }
     }
 
@@ -86,7 +94,6 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.uiState.collectLatest {
                     it.show(binding)
-                    it.update(adapter)
                 }
             }
         }
@@ -97,13 +104,9 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
         _binding = null
     }
 
-    override fun selectWord(wordId: Long) {
-        (requireActivity() as DictionaryDetailsNavigation).toWordDetailsScreen(wordId)
-    }
-
     companion object {
-        fun newInstance(dictionaryId: Long): DictionaryDetailsFragment =
-            DictionaryDetailsFragment().apply {
+        fun newInstance(dictionaryId: Long): CreateNewWordFragment =
+            CreateNewWordFragment().apply {
                 arguments = Bundle().apply {
                     putLong(DICTIONARY_ID_KEY, dictionaryId)
                 }

@@ -2,6 +2,7 @@ package dev.alexeyqqq.wordsapp.presentation.navigation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 interface Screen {
 
@@ -28,6 +29,19 @@ interface Screen {
                 .replace(containerId, fragment)
                 .addToBackStack(fragment.javaClass.simpleName)
                 .commit()
+        }
+    }
+
+    abstract class ShowBottomSheetDialog : Screen {
+
+        abstract fun fragment(): BottomSheetDialogFragment
+
+        override fun show(containerId: Int, fragmentManager: FragmentManager) {
+            val fragment = fragment()
+            fragment.show(
+                fragmentManager,
+                fragment.javaClass.simpleName,
+            )
         }
     }
 }

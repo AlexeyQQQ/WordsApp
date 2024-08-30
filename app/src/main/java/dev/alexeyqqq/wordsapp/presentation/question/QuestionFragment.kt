@@ -46,7 +46,7 @@ class QuestionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { dictionaryId = it.getLong(QUESTION_FRAGMENT_KEY, LEARN_ALL_WORDS) }
+        arguments?.let { dictionaryId = it.getLong(DICTIONARY_ID_KEY, LEARN_ALL_WORDS) }
         dictionaryId?.let { viewModel.nextQuestion(it) }
     }
 
@@ -109,10 +109,10 @@ class QuestionFragment : Fragment() {
         fun newInstance(dictionaryId: Long): QuestionFragment =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(QUESTION_FRAGMENT_KEY, dictionaryId)
+                    putLong(DICTIONARY_ID_KEY, dictionaryId)
                 }
             }
 
-        private const val QUESTION_FRAGMENT_KEY = "QUESTION_FRAGMENT_KEY"
+        private const val DICTIONARY_ID_KEY = "DICTIONARY_ID_KEY"
     }
 }
