@@ -12,7 +12,7 @@ import dev.alexeyqqq.wordsapp.domain.entity.Word
 
 class WordAdapter(
     private val wordActions: WordActions,
-) : ListAdapter<Word, WordAdapter.WordViewHolder>(WordDiffCallback), UpdateList {
+) : ListAdapter<Word, WordAdapter.WordViewHolder>(WordDiffCallback), UpdateWordList {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val binding = ItemRvWordBinding.inflate(
@@ -75,7 +75,7 @@ object WordDiffCallback : DiffUtil.ItemCallback<Word>() {
     }
 }
 
-interface UpdateList {
+interface UpdateWordList {
 
     fun update(list: List<Word>)
 }

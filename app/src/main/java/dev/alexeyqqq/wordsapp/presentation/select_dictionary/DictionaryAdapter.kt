@@ -11,7 +11,7 @@ import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 class DictionaryAdapter(
     private val dictionaryActions: DictionaryActions,
 ) : ListAdapter<Dictionary, DictionaryAdapter.DictionaryViewHolder>(DictionaryDiffCallback),
-    UpdateList {
+    UpdateDictionaryList {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DictionaryViewHolder {
         val binding = ItemRvDictionaryBinding.inflate(
@@ -52,7 +52,7 @@ object DictionaryDiffCallback : DiffUtil.ItemCallback<Dictionary>() {
     }
 }
 
-interface UpdateList {
+interface UpdateDictionaryList {
 
     fun update(list: List<Dictionary>)
 }

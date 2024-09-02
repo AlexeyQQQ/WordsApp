@@ -33,4 +33,10 @@
     <string name="enter_word">Введите cлово</string>
     <string name="translate">Перевод</string>
     <string name="adding_word">Добавление слова:</string>
+    <string name="edit">Редактировать:</string>
+    <string name="delete">Удалить</string>
+    <string name="learn">Изучать</string>
+    <string name="add_to_dictionary">Добавить в словарь</string>
+    <string name="already_added_to_dictionary">Слово уже добавлено во все словари!</string>
+    <string name="save_changes">Сохранить изменения</string>
 </resources>

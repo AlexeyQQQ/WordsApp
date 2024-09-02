@@ -11,4 +11,8 @@ interface RelationRepository {
     fun getDictionariesWithoutWord(wordId: Long): Flow<List<Dictionary>>
 
     suspend fun saveNewWordInDictionary(original: String, translate: String, dictionaryId: Long)
+
+    suspend fun saveOldWordInDictionary(wordId: Long, dictionaryId: Long)
+
+    suspend fun removeWordFromDictionary(wordId: Long, dictionaryId: Long)
 }

@@ -9,7 +9,7 @@ sealed interface DictionaryDetailsUiState {
 
     fun show(binding: FragmentDictionaryDetailsBinding) = Unit
 
-    fun update(updateList: UpdateList) = Unit
+    fun update(updateWordList: UpdateWordList) = Unit
 
     data object Loading : DictionaryDetailsUiState {
 
@@ -35,8 +35,8 @@ sealed interface DictionaryDetailsUiState {
             )
         }
 
-        override fun update(updateList: UpdateList) {
-            updateList.update(list)
+        override fun update(updateWordList: UpdateWordList) {
+            updateWordList.update(list)
         }
     }
 }

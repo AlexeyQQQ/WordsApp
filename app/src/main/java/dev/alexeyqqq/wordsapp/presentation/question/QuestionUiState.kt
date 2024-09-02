@@ -37,7 +37,7 @@ sealed interface QuestionUiState {
     ) : QuestionUiState {
 
         override fun show(binding: FragmentQuestionBinding) = with(binding) {
-            val context = binding.root.context
+            val context = root.context
             val optionBackground =
                 ContextCompat.getDrawable(context, R.drawable.item_rv_background_shape)
             val optionNumberBackground = ContextCompat.getDrawable(
@@ -95,7 +95,7 @@ sealed interface QuestionUiState {
     ) : QuestionUiState {
 
         override fun show(binding: FragmentQuestionBinding) = with(binding) {
-            val context = binding.root.context
+            val context = root.context
             val rightOptionBackground =
                 ContextCompat.getDrawable(context, R.drawable.right_option_background)
             val rightNumberBackground =
@@ -136,7 +136,7 @@ sealed interface QuestionUiState {
     ) : QuestionUiState {
 
         override fun show(binding: FragmentQuestionBinding) = with(binding) {
-            val context = binding.root.context
+            val context = root.context
             val rightOptionBackground =
                 ContextCompat.getDrawable(context, R.drawable.right_option_background)
             val wrongOptionBackground =

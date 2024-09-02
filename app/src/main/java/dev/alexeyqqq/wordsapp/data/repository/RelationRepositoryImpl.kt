@@ -35,4 +35,14 @@ class RelationRepositoryImpl @Inject constructor(
             RelationDbModel(wordId = generatedId, dictionaryId = dictionaryId)
         )
     }
+
+    override suspend fun saveOldWordInDictionary(wordId: Long, dictionaryId: Long) {
+        relationDao.insertRelation(
+            RelationDbModel(wordId = wordId, dictionaryId = dictionaryId)
+        )
+    }
+
+    override suspend fun removeWordFromDictionary(wordId: Long, dictionaryId: Long) {
+        relationDao.removeWordFromDictionary(wordId, dictionaryId)
+    }
 }

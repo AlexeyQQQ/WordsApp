@@ -31,6 +31,8 @@ interface ApplicationComponent {
 
     fun dictionaryDetailsComponentFactory(): DictionaryDetailsComponent.Factory
 
+    fun wordDetailsComponentFactory(): WordDetailsComponent.Factory
+
     @Component.Factory
     interface Factory {
 

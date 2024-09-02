@@ -40,7 +40,7 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
         super.onCreate(savedInstanceState)
         arguments?.let {
             dictionaryId = it.getLong(DICTIONARY_ID_KEY)
-        } ?: throw RuntimeException("DictionaryDetailsFragment arguments == null")
+        }
 
         dictionaryId?.let {
             val component = (requireActivity().application as App).component
@@ -98,7 +98,9 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
     }
 
     override fun selectWord(wordId: Long) {
-        (requireActivity() as DictionaryDetailsNavigation).toWordDetailsScreen(wordId)
+        dictionaryId?.let {
+            (requireActivity() as DictionaryDetailsNavigation).toWordDetailsScreen(wordId, it)
+        }
     }
 
     companion object {

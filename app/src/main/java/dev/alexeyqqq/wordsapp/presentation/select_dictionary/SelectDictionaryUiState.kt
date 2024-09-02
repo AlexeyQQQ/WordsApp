@@ -4,14 +4,14 @@ import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 
 sealed interface SelectDictionaryUiState {
 
-    fun show(updateList: UpdateList)
+    fun show(updateDictionaryList: UpdateDictionaryList)
 
     data class ListDictionaries(
         private val list: List<Dictionary>,
     ) : SelectDictionaryUiState {
 
-        override fun show(updateList: UpdateList) {
-            updateList.update(list)
+        override fun show(updateDictionaryList: UpdateDictionaryList) {
+            updateDictionaryList.update(list)
         }
     }
 }
