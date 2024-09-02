@@ -32,8 +32,8 @@ sealed interface QuestionUiState {
     data class NewWord(
         private val word: String,
         private val options: List<String>,
-        private val wordsLearned: Int,
         private val wordsTotal: Int,
+        private val wordsLearned: Int,
     ) : QuestionUiState {
 
         override fun show(binding: FragmentQuestionBinding) = with(binding) {
