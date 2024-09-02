@@ -6,6 +6,7 @@ import dagger.BindsInstance
 import dagger.Module
 import dagger.Subcomponent
 import dagger.multibindings.IntoMap
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsFragment
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsViewModel
 
@@ -20,7 +21,7 @@ interface DictionaryDetailsComponent {
     interface Factory {
 
         fun create(
-            @BindsInstance @DictionaryIdQualifier dictionaryId: Long,
+            @BindsInstance @DictionaryQualifier dictionary: Dictionary,
         ): DictionaryDetailsComponent
     }
 }

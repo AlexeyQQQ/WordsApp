@@ -1,16 +1,19 @@
 package dev.alexeyqqq.wordsapp.presentation.dictionary_details
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentDictionaryDetailsBinding
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.navigation.DictionaryDetailsNavigation
 import kotlinx.coroutines.flow.collectLatest
@@ -34,15 +37,19 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
         WordAdapter(wordActions = this)
     }
 
-    private var dictionaryId: Long? = null
+    private var currentDictionary: Dictionary? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            dictionaryId = it.getLong(DICTIONARY_ID_KEY)
+            currentDictionary = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelable(DICTIONARY_KEY, Dictionary::class.java)
+            } else {
+                it.getParcelable(DICTIONARY_KEY)
+            }
         }
 
-        dictionaryId?.let {
+        currentDictionary?.let {
             val component = (requireActivity().application as App).component
                 .dictionaryDetailsComponentFactory()
                 .create(it)
@@ -63,6 +70,11 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
         binding.recyclerViewWords.adapter = adapter
         setupClickListeners()
         observeViewModel()
+
+        setFragmentResultListener(REQUEST_DICTIONARY_KEY) { _, bundle ->
+            val result = bundle.getString(REQUEST_BUNDLE_KEY)
+            binding.textViewHeader.text = result
+        }
     }
 
     private fun setupClickListeners() = with(binding) {
@@ -71,13 +83,15 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
         }
 
         buttonAddWord.setOnClickListener {
-            dictionaryId?.let {
-                (requireActivity() as DictionaryDetailsNavigation).toCreateNewWordScreen(it)
+            currentDictionary?.let {
+                (requireActivity() as DictionaryDetailsNavigation).toCreateNewWordScreen(it.id)
             }
         }
 
         imageViewMenu.setOnClickListener {
-            (requireActivity() as DictionaryDetailsNavigation).toAddDictionaryScreen()
+            currentDictionary?.let {
+                (requireActivity() as DictionaryDetailsNavigation).toRenameDictionaryScreen(it)
+            }
         }
     }
 
@@ -98,19 +112,22 @@ class DictionaryDetailsFragment : Fragment(), WordActions {
     }
 
     override fun selectWord(wordId: Long) {
-        dictionaryId?.let {
-            (requireActivity() as DictionaryDetailsNavigation).toWordDetailsScreen(wordId, it)
+        currentDictionary?.let {
+            (requireActivity() as DictionaryDetailsNavigation).toWordDetailsScreen(wordId, it.id)
         }
     }
 
     companion object {
-        fun newInstance(dictionaryId: Long): DictionaryDetailsFragment =
+        fun newInstance(dictionary: Dictionary): DictionaryDetailsFragment =
             DictionaryDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(DICTIONARY_ID_KEY, dictionaryId)
+                    putParcelable(DICTIONARY_KEY, dictionary)
                 }
             }
 
-        private const val DICTIONARY_ID_KEY = "DICTIONARY_ID_KEY"
+        private const val DICTIONARY_KEY = "DICTIONARY_KEY"
+
+        const val REQUEST_DICTIONARY_KEY = "REQUEST_DICTIONARY_KEY"
+        const val REQUEST_BUNDLE_KEY = "REQUEST_BUNDLE_KEY"
     }
 }

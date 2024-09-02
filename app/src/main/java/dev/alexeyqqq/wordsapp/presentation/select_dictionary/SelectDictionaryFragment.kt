@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentSelectDictionaryBinding
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.navigation.SelectDictionaryNavigation
@@ -83,7 +84,7 @@ class SelectDictionaryFragment : Fragment(), DictionaryActions {
         _binding = null
     }
 
-    override fun selectDictionary(dictionaryId: Long) {
-        (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(dictionaryId)
+    override fun selectDictionary(dictionary: Dictionary) {
+        (requireActivity() as SelectDictionaryNavigation).toQuestionScreen(dictionary.id)
     }
 }

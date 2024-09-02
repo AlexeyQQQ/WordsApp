@@ -31,8 +31,11 @@
     <string name="statistics_dictionary">Изучено %s из %s слов</string>
     <string name="count_repeat">%s/%s</string>
     <string name="enter_word">Введите cлово</string>
+    <string name="enter_name">Введите название</string>
     <string name="translate">Перевод</string>
     <string name="adding_word">Добавление слова:</string>
+    <string name="adding_dictionary">Добавление словаря:</string>
+    <string name="rename_dictionary">Введите новое название словаря:</string>
     <string name="edit">Редактировать:</string>
     <string name="delete">Удалить</string>
     <string name="learn">Изучать</string>

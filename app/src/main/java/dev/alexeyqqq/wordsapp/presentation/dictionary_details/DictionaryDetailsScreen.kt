@@ -1,11 +1,12 @@
 package dev.alexeyqqq.wordsapp.presentation.dictionary_details
 
 import androidx.fragment.app.Fragment
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.presentation.navigation.Screen
 
 class DictionaryDetailsScreen(
-    private val dictionaryId: Long,
+    private val dictionary: Dictionary,
 ) : Screen.ReplaceWithBackstack() {
 
-    override fun fragment(): Fragment = DictionaryDetailsFragment.newInstance(dictionaryId)
+    override fun fragment(): Fragment = DictionaryDetailsFragment.newInstance(dictionary)
 }

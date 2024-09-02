@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentWordDetailsBinding
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.DictionaryActions
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.DictionaryAdapter
@@ -102,8 +103,8 @@ class WordDetailsFragment : BottomSheetDialogFragment(), DictionaryActions {
         _binding = null
     }
 
-    override fun selectDictionary(dictionaryId: Long) {
-        viewModel.saveInDictionary(dictionaryId)
+    override fun selectDictionary(dictionary: Dictionary) {
+        viewModel.saveInDictionary(dictionary.id)
         dismiss()
     }
 

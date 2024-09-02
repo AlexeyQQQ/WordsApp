@@ -127,6 +127,7 @@ sealed interface QuestionUiState {
             }
 
             buttonNext.text = context.getString(R.string.next)
+            buttonNext.visibility = View.VISIBLE
         }
     }
 
@@ -186,6 +187,7 @@ sealed interface QuestionUiState {
             }
 
             buttonNext.text = context.getString(R.string.next)
+            buttonNext.visibility = View.VISIBLE
         }
     }
 
@@ -204,6 +206,7 @@ sealed interface QuestionUiState {
                 progressBar,
                 textViewProgress,
                 textViewResult,
+                progressBarLoading,
             ).forEach {
                 it.visibility = View.GONE
             }
@@ -218,6 +221,7 @@ sealed interface QuestionUiState {
 
             textViewHeader.text = context.getString(R.string.have_problem)
             buttonNext.text = context.getString(R.string.return_to_menu)
+            buttonNext.visibility = View.VISIBLE
         }
     }
 }

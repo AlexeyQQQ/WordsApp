@@ -1,5 +1,7 @@
 package dev.alexeyqqq.wordsapp.presentation.navigation
 
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
+import dev.alexeyqqq.wordsapp.presentation.create_dictionary.CreateNewDictionaryScreen
 import dev.alexeyqqq.wordsapp.presentation.create_word.CreateNewWordScreen
 import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesScreen
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsScreen
@@ -34,12 +36,16 @@ interface Navigation : StartMenuNavigation, SelectDictionaryNavigation, Question
         navigate(StartMenuScreen)
     }
 
-    override fun toDictionaryDetailsScreen(dictionaryId: Long) {
-        navigate(DictionaryDetailsScreen(dictionaryId))
+    override fun toDictionaryDetailsScreen(dictionary: Dictionary) {
+        navigate(DictionaryDetailsScreen(dictionary))
     }
 
     override fun toAddDictionaryScreen() {
-        TODO()
+        navigate(CreateNewDictionaryScreen.ModeAdd())
+    }
+
+    override fun toRenameDictionaryScreen(dictionary: Dictionary) {
+        navigate(CreateNewDictionaryScreen.ModeEdit(dictionary))
     }
 
     override fun toWordDetailsScreen(wordId: Long, dictionaryId: Long) {
@@ -72,7 +78,7 @@ interface QuestionNavigation {
 
 interface DictionariesNavigation {
 
-    fun toDictionaryDetailsScreen(dictionaryId: Long)
+    fun toDictionaryDetailsScreen(dictionary: Dictionary)
 
     fun toAddDictionaryScreen()
 }
@@ -83,5 +89,5 @@ interface DictionaryDetailsNavigation {
 
     fun toCreateNewWordScreen(dictionaryId: Long)
 
-    fun toAddDictionaryScreen()
+    fun toRenameDictionaryScreen(dictionary: Dictionary)
 }

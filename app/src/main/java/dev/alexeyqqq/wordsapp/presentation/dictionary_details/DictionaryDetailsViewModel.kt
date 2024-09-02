@@ -2,8 +2,8 @@ package dev.alexeyqqq.wordsapp.presentation.dictionary_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.alexeyqqq.wordsapp.di.DictionaryIdQualifier
-import dev.alexeyqqq.wordsapp.domain.usecases.dictionary.GetDictionaryUseCase
+import dev.alexeyqqq.wordsapp.di.DictionaryQualifier
+import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.domain.usecases.relation.GetDictionaryWordsUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -13,19 +13,17 @@ import javax.inject.Inject
 
 class DictionaryDetailsViewModel @Inject constructor(
     getDictionaryWordsUseCase: GetDictionaryWordsUseCase,
-    private val getDictionaryUseCase: GetDictionaryUseCase,
-    @DictionaryIdQualifier private val dictionaryId: Long,
+    @DictionaryQualifier private val dictionary: Dictionary,
 ) : ViewModel() {
 
     val uiState: StateFlow<DictionaryDetailsUiState> =
-        getDictionaryWordsUseCase.invoke(dictionaryId)
+        getDictionaryWordsUseCase.invoke(dictionary.id)
             .map { list ->
-                val dictionary = getDictionaryUseCase.invoke(dictionaryId)
                 DictionaryDetailsUiState.ShowDictionary(
                     list = list,
                     dictionaryName = dictionary.name,
                     wordsLearned = list.filter { word ->
-                        word.correctAnswersCount < ANSWER_TO_STUDY
+                        word.correctAnswersCount >= ANSWER_TO_STUDY
                     }.size,
                     wordsTotal = list.size,
                 )
