@@ -1,11 +1,11 @@
-package dev.alexeyqqq.wordsapp.presentation
+package dev.alexeyqqq.wordsapp.presentation.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.alexeyqqq.wordsapp.R
 import dev.alexeyqqq.wordsapp.databinding.ActivityMainBinding
-import dev.alexeyqqq.wordsapp.presentation.navigation.Navigation
-import dev.alexeyqqq.wordsapp.presentation.navigation.Screen
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.Navigation
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.Screen
 import dev.alexeyqqq.wordsapp.presentation.start_menu.StartMenuScreen
 
 class MainActivity : AppCompatActivity(), Navigation {

@@ -2,7 +2,7 @@ package dev.alexeyqqq.wordsapp.presentation.create_dictionary
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
-import dev.alexeyqqq.wordsapp.presentation.navigation.Screen
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.Screen
 
 abstract class CreateNewDictionaryScreen : Screen.ShowBottomSheetDialog() {
 

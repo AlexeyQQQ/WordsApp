@@ -12,6 +12,8 @@ sealed interface WordDetailsUiState {
 
     fun update(updateDictionaryList: UpdateDictionaryList) = Unit
 
+    fun navigate(function: () -> Unit) = Unit
+
     data object Loading : WordDetailsUiState {
 
         override fun show(binding: FragmentWordDetailsBinding) = with(binding) {
@@ -64,6 +66,13 @@ sealed interface WordDetailsUiState {
 
         override fun update(updateDictionaryList: UpdateDictionaryList) {
             updateDictionaryList.update(list)
+        }
+    }
+
+    data object Close : WordDetailsUiState {
+
+        override fun navigate(function: () -> Unit) {
+            function.invoke()
         }
     }
 }

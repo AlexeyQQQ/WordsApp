@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dev.alexeyqqq.wordsapp.databinding.FragmentStartMenuBinding
-import dev.alexeyqqq.wordsapp.presentation.navigation.StartMenuNavigation
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.StartMenuNavigation
 
 class StartMenuFragment : Fragment() {
 

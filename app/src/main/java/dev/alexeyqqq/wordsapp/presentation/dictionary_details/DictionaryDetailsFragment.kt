@@ -14,8 +14,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentDictionaryDetailsBinding
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
-import dev.alexeyqqq.wordsapp.presentation.navigation.DictionaryDetailsNavigation
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.DictionaryDetailsNavigation
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

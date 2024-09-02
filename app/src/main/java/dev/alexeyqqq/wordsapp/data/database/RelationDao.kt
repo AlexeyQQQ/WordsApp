@@ -39,4 +39,7 @@ interface RelationDao {
 
     @Query("DELETE FROM relation_table WHERE wordId = :wordId AND dictionaryId = :dictionaryId")
     suspend fun removeWordFromDictionary(wordId: Long, dictionaryId: Long)
+
+    @Query("SELECT * FROM relation_table WHERE wordId = :wordId")
+    suspend fun getRelationsForWord(wordId: Long): List<RelationDbModel>
 }

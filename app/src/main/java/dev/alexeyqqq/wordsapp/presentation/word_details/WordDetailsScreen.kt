@@ -1,7 +1,7 @@
 package dev.alexeyqqq.wordsapp.presentation.word_details
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dev.alexeyqqq.wordsapp.presentation.navigation.Screen
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.Screen
 
 class WordDetailsScreen(
     private val wordId: Long,

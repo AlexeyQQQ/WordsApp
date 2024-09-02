@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp.presentation.navigation
+package dev.alexeyqqq.wordsapp.presentation.core.navigation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

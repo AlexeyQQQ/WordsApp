@@ -14,8 +14,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentQuestionBinding
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
-import dev.alexeyqqq.wordsapp.presentation.navigation.QuestionNavigation
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.QuestionNavigation
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

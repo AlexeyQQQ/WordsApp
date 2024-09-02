@@ -14,8 +14,8 @@ import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentSelectDictionaryBinding
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.domain.repository.TrainerRepository.Companion.LEARN_ALL_WORDS
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
-import dev.alexeyqqq.wordsapp.presentation.navigation.SelectDictionaryNavigation
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.SelectDictionaryNavigation
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

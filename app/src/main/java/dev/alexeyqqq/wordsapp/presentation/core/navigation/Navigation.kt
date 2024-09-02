@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp.presentation.navigation
+package dev.alexeyqqq.wordsapp.presentation.core.navigation
 
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.presentation.create_dictionary.CreateNewDictionaryScreen

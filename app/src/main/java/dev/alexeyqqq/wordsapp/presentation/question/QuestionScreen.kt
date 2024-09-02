@@ -1,7 +1,7 @@
 package dev.alexeyqqq.wordsapp.presentation.question
 
 import androidx.fragment.app.Fragment
-import dev.alexeyqqq.wordsapp.presentation.navigation.Screen
+import dev.alexeyqqq.wordsapp.presentation.core.navigation.Screen
 
 class QuestionScreen(
     private val dictionaryId: Long,

@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp.presentation
+package dev.alexeyqqq.wordsapp.presentation.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

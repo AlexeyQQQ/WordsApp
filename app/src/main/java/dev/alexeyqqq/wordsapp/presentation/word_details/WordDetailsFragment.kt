@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentWordDetailsBinding
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.DictionaryActions
 import dev.alexeyqqq.wordsapp.presentation.select_dictionary.DictionaryAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -75,15 +75,11 @@ class WordDetailsFragment : BottomSheetDialogFragment(), DictionaryActions {
         }
 
         buttonDelete.setOnClickListener {
-            currentDictionaryId?.let { dictionary ->
-                viewModel.removeWordFromDictionary(dictionary)
-                dismiss()
-            }
+            currentDictionaryId?.let { viewModel.removeWordFromDictionary(it) }
         }
 
         buttonLearn.setOnClickListener {
             viewModel.learnAgain()
-            dismiss()
         }
     }
 
@@ -93,6 +89,7 @@ class WordDetailsFragment : BottomSheetDialogFragment(), DictionaryActions {
                 viewModel.uiState.collectLatest {
                     it.show(binding)
                     it.update(adapter)
+                    it.navigate { dismiss() }
                 }
             }
         }
@@ -105,7 +102,6 @@ class WordDetailsFragment : BottomSheetDialogFragment(), DictionaryActions {
 
     override fun selectDictionary(dictionary: Dictionary) {
         viewModel.saveInDictionary(dictionary.id)
-        dismiss()
     }
 
     companion object {

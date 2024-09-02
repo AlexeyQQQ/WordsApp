@@ -8,9 +8,9 @@ import dev.alexeyqqq.wordsapp.domain.usecases.relation.RemoveWordFromDictionaryU
 import dev.alexeyqqq.wordsapp.domain.usecases.relation.SaveOldWordInDictionaryUseCase
 import dev.alexeyqqq.wordsapp.domain.usecases.word.GetWordUseCase
 import dev.alexeyqqq.wordsapp.domain.usecases.word.UpdateWordUseCase
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,28 +23,33 @@ class WordDetailsViewModel @Inject constructor(
     @WordIdQualifier private val wordId: Long,
 ) : ViewModel() {
 
-    val uiState = getDictionariesWithoutWordUseCase.invoke(wordId).map {
-        val word = getWordUseCase(wordId)
-        if (word.correctAnswersCount < ANSWER_TO_STUDY) {
-            WordDetailsUiState.NotLearned(it)
-        } else {
-            WordDetailsUiState.Learned(it)
+    private val _uiState = MutableStateFlow<WordDetailsUiState>(WordDetailsUiState.Loading)
+    val uiState: StateFlow<WordDetailsUiState> get() = _uiState
+
+    init {
+        viewModelScope.launch {
+            val word = getWordUseCase(wordId)
+            getDictionariesWithoutWordUseCase(wordId).collect { dictionaries ->
+                _uiState.value = if (word.correctAnswersCount < ANSWER_TO_STUDY) {
+                    WordDetailsUiState.NotLearned(dictionaries)
+                } else {
+                    WordDetailsUiState.Learned(dictionaries)
+                }
+            }
         }
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.Lazily,
-        WordDetailsUiState.Loading
-    )
+    }
 
     fun saveInDictionary(dictionaryId: Long) {
         viewModelScope.launch {
             saveOldWordInDictionaryUseCase.invoke(wordId, dictionaryId)
+            _uiState.update { WordDetailsUiState.Close }
         }
     }
 
     fun removeWordFromDictionary(dictionaryId: Long) {
         viewModelScope.launch {
             removeWordFromDictionaryUseCase.invoke(wordId, dictionaryId)
+            _uiState.update { WordDetailsUiState.Close }
         }
     }
 
@@ -52,6 +57,7 @@ class WordDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             val word = getWordUseCase.invoke(wordId).copy(correctAnswersCount = BASIC_VALUE)
             updateWordUseCase.invoke(word)
+            _uiState.update { WordDetailsUiState.Close }
         }
     }
 

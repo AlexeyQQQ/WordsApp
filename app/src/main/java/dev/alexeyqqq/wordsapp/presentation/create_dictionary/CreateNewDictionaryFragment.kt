@@ -18,7 +18,7 @@ import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.R
 import dev.alexeyqqq.wordsapp.databinding.FragmentCreateNewDictionaryBinding
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsFragment.Companion.REQUEST_BUNDLE_KEY
 import dev.alexeyqqq.wordsapp.presentation.dictionary_details.DictionaryDetailsFragment.Companion.REQUEST_DICTIONARY_KEY
 import kotlinx.coroutines.flow.collectLatest

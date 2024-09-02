@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dev.alexeyqqq.wordsapp.App
 import dev.alexeyqqq.wordsapp.databinding.FragmentCreateNewWordBinding
-import dev.alexeyqqq.wordsapp.presentation.ViewModelFactory
+import dev.alexeyqqq.wordsapp.presentation.core.ViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

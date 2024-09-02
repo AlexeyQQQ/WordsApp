@@ -44,5 +44,6 @@ class RelationRepositoryImpl @Inject constructor(
 
     override suspend fun removeWordFromDictionary(wordId: Long, dictionaryId: Long) {
         relationDao.removeWordFromDictionary(wordId, dictionaryId)
+        if (relationDao.getRelationsForWord(wordId).isEmpty()) wordsDao.deleteWord(wordId)
     }
 }
