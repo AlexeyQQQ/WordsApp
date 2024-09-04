@@ -7,5 +7,6 @@ class TranslateUseCase @Inject constructor(
     private val trainerRepository: TrainerRepository,
 ) {
 
+    @Throws(Exception::class)
     suspend operator fun invoke(word: String) = trainerRepository.translate(word)
 }

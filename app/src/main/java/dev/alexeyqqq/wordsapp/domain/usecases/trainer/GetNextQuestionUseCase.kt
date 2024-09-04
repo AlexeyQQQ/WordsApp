@@ -8,6 +8,7 @@ class GetNextQuestionUseCase @Inject constructor(
     private val trainerRepository: TrainerRepository,
 ) {
 
+    @Throws(Exception::class)
     suspend operator fun invoke(dictionaryI: Long): Question =
         trainerRepository.getNextQuestion(dictionaryI)
 }
