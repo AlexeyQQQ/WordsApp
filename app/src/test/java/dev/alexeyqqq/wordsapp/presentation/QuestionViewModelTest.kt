@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp
+package dev.alexeyqqq.wordsapp.presentation
 
 import dev.alexeyqqq.wordsapp.domain.entity.Question
 import dev.alexeyqqq.wordsapp.domain.entity.Word
@@ -44,8 +44,7 @@ class QuestionViewModelTest {
 
     @After
     fun after() {
-        Mockito.reset(getNextQuestionUseCase)
-        Mockito.reset(increaseCorrectAnswersUseCase)
+        Mockito.reset(getNextQuestionUseCase, increaseCorrectAnswersUseCase)
         Dispatchers.resetMain()
     }
 

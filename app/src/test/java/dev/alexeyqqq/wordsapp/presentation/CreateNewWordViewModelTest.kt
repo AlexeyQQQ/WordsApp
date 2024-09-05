@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp
+package dev.alexeyqqq.wordsapp.presentation
 
 import dev.alexeyqqq.wordsapp.domain.usecases.relation.SaveNewWordInDictionaryUseCase
 import dev.alexeyqqq.wordsapp.domain.usecases.trainer.TranslateUseCase
@@ -42,8 +42,7 @@ class CreateNewWordViewModelTest {
 
     @After
     fun after() {
-        Mockito.reset(translateUseCase)
-        Mockito.reset(saveNewWordInDictionaryUseCase)
+        Mockito.reset(translateUseCase, saveNewWordInDictionaryUseCase)
         Dispatchers.resetMain()
     }
 

@@ -1,4 +1,4 @@
-package dev.alexeyqqq.wordsapp
+package dev.alexeyqqq.wordsapp.presentation
 
 import dev.alexeyqqq.wordsapp.domain.entity.Dictionary
 import dev.alexeyqqq.wordsapp.domain.usecases.dictionary.DeleteDictionaryUseCase
@@ -46,9 +46,7 @@ class CreateNewDictionaryViewModelTest {
 
     @After
     fun after() {
-        Mockito.reset(insertDictionaryUseCase)
-        Mockito.reset(updateDictionaryUseCase)
-        Mockito.reset(deleteDictionaryUseCase)
+        Mockito.reset(insertDictionaryUseCase, updateDictionaryUseCase, deleteDictionaryUseCase)
         Dispatchers.resetMain()
     }
 
