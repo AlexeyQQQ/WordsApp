@@ -3,6 +3,7 @@ package dev.alexeyqqq.wordsapp.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import dev.alexeyqqq.wordsapp.presentation.core.MainActivity
 import dev.alexeyqqq.wordsapp.presentation.create_dictionary.CreateNewDictionaryFragment
 import dev.alexeyqqq.wordsapp.presentation.create_word.CreateNewWordFragment
 import dev.alexeyqqq.wordsapp.presentation.dictionaries.DictionariesFragment
@@ -19,6 +20,8 @@ import kotlinx.coroutines.CoroutineScope
     ]
 )
 interface ApplicationComponent {
+
+    fun inject(activity: MainActivity)
 
     fun inject(fragment: SelectDictionaryFragment)
 

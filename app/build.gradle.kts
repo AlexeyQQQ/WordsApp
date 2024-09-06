@@ -77,6 +77,9 @@ dependencies {
     implementation("com.google.dagger:dagger:2.50")
     ksp("com.google.dagger:dagger-compiler:2.50")
 
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
+
     // Test
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.12.0")
