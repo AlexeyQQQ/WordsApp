@@ -42,4 +42,6 @@
     <string name="add_to_dictionary">Добавить в словарь</string>
     <string name="already_added_to_dictionary">Слово уже добавлено во все словари!</string>
     <string name="save_changes">Сохранить изменения</string>
+    <string name="notification_title">Забыли о тренировках?</string>
+    <string name="notification_text">Вы не учили слова уже больше суток, возвращайтесь!</string>
 </resources>

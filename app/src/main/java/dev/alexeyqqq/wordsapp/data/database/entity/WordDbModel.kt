@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "words_table")
-class WordDbModel(
+data class WordDbModel(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("id")
