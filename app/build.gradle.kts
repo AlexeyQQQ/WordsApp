@@ -27,6 +27,7 @@ android {
             keyPassword = "12341234"
         }
     }
+    // TEST COMMENT !!!!!!!!!!!!!!
 
     buildTypes {
         getByName("release") {
