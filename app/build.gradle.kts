@@ -19,14 +19,53 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("C:\\Users\\Admin\\release.keystore.jks")
+            storePassword = "12341234"
+            keyAlias = "key0"
+            keyPassword = "12341234"
+        }
+    }
+    // TEST COMMENT !!!!!!!!!!!!!!
+
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true  // Включить минификацию (R8/ProGuard)
+            isShrinkResources = true   // Удаление неиспользуемых ресурсов
+            isDebuggable = true  // Запрещает отладку в сборке
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
+//        debug {
+//            isMinifyEnabled = true  // Включить минификацию (R8/ProGuard)
+//            isShrinkResources = true   // Удаление неиспользуемых ресурсов
+//            isDebuggable = true  // Разрешает отладку в сборке
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),    // базовые настройки с оптимизацией
+//                "proguard-rules.pro"    // файл для ручных настроек
+//            )
+//        }
+
+//            УСТАРЕВШИЙ ВАРИАНТ:
+//            postprocessing {
+//                isRemoveUnusedCode = true   // Удаление неиспользуемого кода
+//                isRemoveUnusedResources = true  // Удаление неиспользуемых ресурсов
+//                isOptimizeCode = true   // Оптимизация
+//                isObfuscate = true  // Обфускация
+//
+//                // proguard-android-optimize.txt - базовые настройки с оптимизацией
+//                // proguard-android.txt - базовые настройки без оптимизации
+//                // proguard-defaults.txt - позволяет настраивать postprocessing блок (устарело)
+//                proguardFiles(
+//                    getDefaultProguardFile("proguard-defaults.txt"),
+//                    "proguard-rules.pro"
+//                )
+//            }
     }
 
     compileOptions {
